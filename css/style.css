@@ -50,7 +50,7 @@ button {
     padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
     transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
@@ -157,6 +157,7 @@ button:active {
     transform: translateY(0);
     opacity: 0.85;
 }
+
 
 .role-cell {
     font-weight: 600;

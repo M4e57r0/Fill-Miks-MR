@@ -24,7 +24,7 @@
                 <table class="team-table" data-team="gandony">
                     <thead>
                         <tr>
-                            <th>Роль</th>
+                            <th></th>
                             <th>Ник в игре</th>
                             <th>Twitch</th>
                             <th>Рейтинг</th>
@@ -44,7 +44,7 @@
                 <table class="team-table" data-team="pupsiki">
                     <thead>
                         <tr>
-                            <th>Роль</th>
+                            <th></th>
                             <th>Ник в игре</th>
                             <th>Twitch</th>
                             <th>Рейтинг</th>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="queue-block">
-                <h2>Сыгравшие</h2>
+                <h2>Наигравшиеся</h2>
                 <table class="queue-table" id="queue-played">
                     <thead>
                         <tr>
@@ -121,12 +121,12 @@
             </label>
             <fieldset class="roles-fieldset">
                 <legend>Роли</legend>
-                <label><input type="checkbox" value="tank" class="add-role"> Танк</label>
-                <label><input type="checkbox" value="dps" class="add-role"> DPS</label>
-                <label><input type="checkbox" value="support" class="add-role"> Саппорт</label>
+                <label><input type="checkbox" value="tank" class="add-role">Танк</label>
+                <label><input type="checkbox" value="dps" class="add-role">DPS</label>
+                <label><input type="checkbox" value="support" class="add-role">Саппорт</label>
             </fieldset>
             <fieldset>
-                <legend>Куда добавить</legend>
+                <legend>Команда:</legend>
                 <label><input type="radio" name="add-dest" value="queue" checked> В очередь</label>
                 <label><input type="radio" name="add-dest" value="team"> Сразу в команду</label>
                 <select id="add-team-select" disabled>
@@ -153,9 +153,9 @@
             <label>Кол-во игр: <input type="number" id="edit-games" min="0"></label>
             <fieldset class="roles-fieldset">
                 <legend>Роли</legend>
-                <label><input type="checkbox" value="tank" class="edit-role"> Танк</label>
-                <label><input type="checkbox" value="dps" class="edit-role"> DPS</label>
-                <label><input type="checkbox" value="support" class="edit-role"> Саппорт</label>
+                <label><input type="checkbox" value="tank" class="edit-role">Танк</label>
+                <label><input type="checkbox" value="dps" class="edit-role">DPS</label>
+                <label><input type="checkbox" value="support" class="edit-role">Саппорт</label>
             </fieldset>
             <div class="modal-actions">
                 <button id="edit-save">Сохранить</button>

@@ -93,14 +93,14 @@ function renderTeams() {
                 tdRoles.appendChild(createRoleIcons(player.roles));
 
                 const btnToPlayed = document.createElement('button');
-                btnToPlayed.textContent = '↓';
+                btnToPlayed.textContent = 'На отдых';
                 btnToPlayed.addEventListener('click', () => {
                     movePlayerFromTeamToPlayed(teamKey, index);
                 });
 
                 const btnEdit = document.createElement('button');
-                btnEdit.textContent = '✎';
-                btnEdit.style.marginLeft = '4px';
+                btnEdit.textContent = 'Редактировать';
+                btnEdit.style.marginLeft = '2px';
                 btnEdit.addEventListener('click', () => {
                     openEditModal(player, {
                         type: 'team',
