@@ -1,14 +1,4 @@
-:root {
-    --bg: #0f1115;
-    --bg-alt: #181b22;
-    --accent: #e6399b;
-    --accent-soft: #7b5cff;
-    --text: #f5f5f5;
-    --muted: #9ca3af;
-    --border: #2a2f3a;
-    --danger: #f97373;
-}
-
+/* ===== СБРОС И БАЗОВЫЕ СТИЛИ ===== */
 * {
     box-sizing: border-box;
 }
@@ -20,6 +10,21 @@ body {
     color: var(--text);
 }
 
+/* ===== ПЕРЕМЕННЫЕ И ГЛОБАЛЬНЫЕ НАСТРОЙКИ ===== */
+:root {
+    --bg: #0f1115;
+    --bg-alt: #181b22;
+    --accent: #e6399b;
+    --accent-soft: #7b5cff;
+    --text: #f5f5f5;
+    --muted: #9ca3af;
+    --border: #2a2f3a;
+    --danger: #f97373;
+}
+
+/* ===== КОМПОНЕНТЫ САЙТА ===== */
+
+/* HEADER */
 .header {
     padding: 16px 24px;
     border-bottom: 1px solid var(--border);
@@ -39,33 +44,7 @@ body {
     letter-spacing: 0.05em;
 }
 
-.controls button {
-    margin-left: 8px;
-}
-
-button {
-    background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-    border: none;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
-
-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.6);
-}
-
-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    opacity: 0.9;
-}
-
+/* ОСНОВНОЙ ЛАЙАУТ */
 .main-layout {
     display: flex;
     flex-direction: column;
@@ -79,13 +58,25 @@ button:active {
     align-items: flex-start;
 }
 
-.team {
+.queues-section {
+    display: flex;
+    gap: 24px;
+}
+
+/* КАРТОЧКИ КОМАНД И ОЧЕРЕДЕЙ */
+.team,
+.queue-block {
     flex: 1;
     background: rgba(15, 17, 23, 0.95);
     border-radius: 12px;
     padding: 12px;
     border: 1px solid var(--border);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.queue-block {
+    max-height: 420px;
+    overflow: auto;
 }
 
 .team h2,
@@ -97,6 +88,7 @@ button:active {
     color: var(--accent-soft);
 }
 
+/* ТАБЛИЦЫ */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -127,38 +119,15 @@ tbody tr.drag-over {
     outline: 2px dashed var(--accent-soft);
 }
 
-/* Плавное появление строк */
-tbody tr {
-    animation: fadeIn 0.25s ease;
+.queue-table tbody tr {
+    cursor: grab;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to   { opacity: 1; transform: translateY(0); }
+.queue-table tbody tr:active {
+    cursor: grabbing;
 }
 
-/* Hover-эффект строк */
-tbody tr:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transition: background 0.2s ease;
-}
-
-/* Анимация кнопок */
-button {
-    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.6);
-}
-
-button:active {
-    transform: translateY(0);
-    opacity: 0.85;
-}
-
-
+/* ЯЧЕЙКИ ТАБЛИЦ */
 .role-cell {
     font-weight: 600;
     color: var(--muted);
@@ -166,6 +135,63 @@ button:active {
     white-space: nowrap;
 }
 
+.action-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* КНОПКИ ОБЩИЕ */
+button {
+    background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    opacity: 0.9;
+}
+
+.controls button {
+    margin-left: 8px;
+}
+
+/* КНОПКИ В ТАБЛИЦЕ */
+.action-cell button {
+    padding: 4px 8px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #0f5e2c, #0f5e2c);
+    align-content: center;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.action-cell button:hover {
+    opacity: 0.95;
+}
+
+/* СПЕЦИАЛЬНЫЕ КНОПКИ */
+#clear-all {
+    background: linear-gradient(135deg, var(--danger), #b91c1c);
+}
+
+#clear-teams {
+    background: linear-gradient(135deg, #20269f, #20269f);
+}
+
+/* РОЛИ */
 .role-icons {
     display: flex;
     gap: 4px;
@@ -195,50 +221,30 @@ button:active {
     border: 1px solid #22c55e;
 }
 
-.action-cell {
-    text-align: center;
-    vertical-align: middle;
+/* ЧЕКБОКСЫ РОЛЕЙ */
+.add-role {
+     appearance: none;
+     border: 9px solid #ccc;
+     cursor: pointer;
+     border-radius: 4px;
 }
 
-.action-cell button {
-    padding: 4px 8px;
-    font-size: 16px;
-    background: linear-gradient(135deg, #0f5e2c, #0f5e2c);
-    align-content: center;
-    display: inline-block;
-    margin: 0 auto;
+.add-role:checked {
+    border-color: #f97316;
+    position: relative;
 }
 
-.action-cell button:hover {
-    opacity: 0.95;
+.add-role:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  font-size: 14px;
 }
 
-.queues-section {
-    display: flex;
-    gap: 24px;
-}
-
-.queue-block {
-    flex: 1;
-    background: rgba(15, 17, 23, 0.95);
-    border-radius: 12px;
-    padding: 12px;
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    max-height: 420px;
-    overflow: auto;
-}
-
-.queue-table tbody tr {
-    cursor: grab;
-}
-
-.queue-table tbody tr:active {
-    cursor: grabbing;
-}
-
-/* Модалки */
-
+/* МОДАЛЬНЫЕ ОКНА */
 .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -300,16 +306,36 @@ button:active {
     margin-top: 10px;
 }
 
-#clear-all {
-    background: linear-gradient(135deg, var(--danger), #b91c1c);
+/* АНИМАЦИИ И ЭФФЕКТЫ */
+tbody tr {
+    animation: fadeIn 0.25s ease;
 }
 
-#clear-teams {
-    background: linear-gradient(135deg, #20269f, #20269f);
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Адаптив */
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transition: background 0.2s ease;
+}
 
+button {
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+}
+
+button:active {
+    transform: translateY(0);
+    opacity: 0.85;
+}
+
+/* АДАПТИВНОСТЬ */
 @media (max-width: 960px) {
     .teams-section,
     .queues-section {
