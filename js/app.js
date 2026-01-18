@@ -93,7 +93,7 @@ function renderTeams() {
                 tdRoles.appendChild(createRoleIcons(player.roles));
 
                 const btnToPlayed = document.createElement('button');
-                btnToPlayed.textContent = '→ сыграл';
+                btnToPlayed.textContent = '↓';
                 btnToPlayed.addEventListener('click', () => {
                     movePlayerFromTeamToPlayed(teamKey, index);
                 });
