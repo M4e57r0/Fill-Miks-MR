@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Filliolina — Marvel Rivals</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+    <header class="header">
+        <h1>Миксы во имя великих кириешек</h1>
+        <div class="controls">
+            <button id="btn-add-player">Добавить игрока</button>
+            <button id="btn-inc-games">+1 к счетчику игр</button>
+            <button id="btn-clear-lists">Очистить списки</button>
+        </div>
+    </header>
+
+    <main class="main-layout">
+        <section class="teams-section">
+            <div class="team">
+                <h2>GANDONЫ</h2>
+                <table class="team-table" data-team="gandony">
+                    <thead>
+                        <tr>
+                            <th>Роль</th>
+                            <th>Ник в игре</th>
+                            <th>Twitch</th>
+                            <th>Рейтинг</th>
+                            <th>Игры</th>
+                            <th>Роли</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 6 фиксированных строк по ролям -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="team">
+                <h2>PUPSIKI</h2>
+                <table class="team-table" data-team="pupsiki">
+                    <thead>
+                        <tr>
+                            <th>Роль</th>
+                            <th>Ник в игре</th>
+                            <th>Twitch</th>
+                            <th>Рейтинг</th>
+                            <th>Игры</th>
+                            <th>Роли</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 6 фиксированных строк по ролям -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="queues-section">
+            <div class="queue-block">
+                <h2>Ожидающие</h2>
+                <table class="queue-table" id="queue-waiting">
+                    <thead>
+                        <tr>
+                            <th>Ник в игре</th>
+                            <th>Twitch</th>
+                            <th>Рейтинг</th>
+                            <th>Игры</th>
+                            <th>Роли</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- динамические строки -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="queue-block">
+                <h2>Сыгравшие</h2>
+                <table class="queue-table" id="queue-played">
+                    <thead>
+                        <tr>
+                            <th>Ник в игре</th>
+                            <th>Twitch</th>
+                            <th>Рейтинг</th>
+                            <th>Игры</th>
+                            <th>Роли</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- динамические строки -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модалка добавления игрока -->
+    <div class="modal-backdrop hidden" id="modal-add">
+        <div class="modal">
+            <h3>Добавить игрока</h3>
+            <label>
+                Ник в игре:
+                <input type="text" id="add-game-nick">
+            </label>
+            <label>
+                Ник на Twitch:
+                <input type="text" id="add-twitch-nick">
+            </label>
+            <label>
+                Рейтинг:
+                <input type="text" id="add-rank">
+            </label>
+            <label>
+                Кол-во игр:
+                <input type="number" id="add-games" min="0" value="0">
+            </label>
+            <fieldset class="roles-fieldset">
+                <legend>Роли</legend>
+                <label><input type="checkbox" value="tank" class="add-role"> Танк</label>
+                <label><input type="checkbox" value="dps" class="add-role"> DPS</label>
+                <label><input type="checkbox" value="support" class="add-role"> Саппорт</label>
+            </fieldset>
+            <fieldset>
+                <legend>Куда добавить</legend>
+                <label><input type="radio" name="add-dest" value="queue" checked> В очередь</label>
+                <label><input type="radio" name="add-dest" value="team"> Сразу в команду</label>
+                <select id="add-team-select" disabled>
+                    <option value="gandony">GANDONЫ</option>
+                    <option value="pupsiki">PUPSIKI</option>
+                </select>
+            </fieldset>
+            <div class="modal-actions">
+                <button id="add-save">Сохранить</button>
+                <button id="add-cancel">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка редактирования игрока -->
+    <div class="modal-backdrop hidden" id="modal-edit">
+        <div class="modal">
+            <h3>Редактировать игрока</h3>
+            <label>Ник в игре: <input type="text" id="edit-game-nick"></label>
+            <label>Ник на Twitch: <input type="text" id="edit-twitch-nick"></label>
+            <label>Рейтинг:
+                <input type="text" id="edit-rank">
+            </label>
+            <label>Кол-во игр: <input type="number" id="edit-games" min="0"></label>
+            <fieldset class="roles-fieldset">
+                <legend>Роли</legend>
+                <label><input type="checkbox" value="tank" class="edit-role"> Танк</label>
+                <label><input type="checkbox" value="dps" class="edit-role"> DPS</label>
+                <label><input type="checkbox" value="support" class="edit-role"> Саппорт</label>
+            </fieldset>
+            <div class="modal-actions">
+                <button id="edit-save">Сохранить</button>
+                <button id="edit-cancel">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Модалка очистки -->
+    <div class="modal-backdrop hidden" id="modal-clear">
+        <div class="modal">
+            <h3>Очистка списков</h3>
+            <p>Что очистить?</p>
+            <div class="modal-actions">
+                <button id="clear-all">Все списки</button>
+                <button id="clear-teams">Только команды</button>
+                <button id="clear-cancel">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
